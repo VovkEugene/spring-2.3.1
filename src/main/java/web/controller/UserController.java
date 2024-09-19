@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import web.model.Role;
 import web.model.User;
@@ -45,6 +46,17 @@ public class UserController {
     @GetMapping("/delete")
     public String deleteUser(@RequestParam("id") Long id) {
         service.deleteUser(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/create-form")
+    public String createUserForm(User user) {
+        return "create-form";
+    }
+
+    @PostMapping("/create-form")
+    public String createUser(User user) {
+        service.saveUser(user);
         return "redirect:/";
     }
 }

@@ -33,6 +33,10 @@
             <td th:text="${user.role}"></td>
             <td th:text="${user.createDate}"></td>
             <td class="btn-group">
+                <a th:href="@{/update(id=${user.id})}"
+                   class="btn btn-warning">
+                    Edit
+                </a>
                 <a th:href="@{/delete(id=${user.id})}"
                    class="btn btn-danger"
                    onclick="return confirm('Are you sure?')">
@@ -42,6 +46,7 @@
         </tr>
         </tbody>
     </table>
+    <a href="/create-form" class="btn btn-success">Create user</a>
 </div>
 </body>
 </html>
