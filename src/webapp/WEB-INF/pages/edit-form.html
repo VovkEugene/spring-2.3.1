@@ -12,7 +12,7 @@
     <h2>Edit form</h2>
     <form action="#" th:action="@{/edit-form}" th:object="${user}" method="post">
         <div class="mb-3">
-            <label for="username">id:</label>
+            <label for="id">id:</label>
             <input readonly th:field="*{id}" type="number" class="form-control" id="id"
                    name="id" autocomplete="off">
         </div>
