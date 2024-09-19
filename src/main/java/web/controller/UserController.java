@@ -59,4 +59,17 @@ public class UserController {
         service.saveUser(user);
         return "redirect:/";
     }
+
+    @GetMapping("/edit-form")
+    public String editUserForm(@RequestParam("id") Long id, Model model) {
+        User user = service.getUserById(id);
+        model.addAttribute("user", user);
+        return "edit-form";
+    }
+
+    @PostMapping("/edit-form")
+    public String editUser(@RequestParam("id") Long id, User user) {
+        service.updateUser(id, user);
+        return "redirect:/";
+    }
 }
