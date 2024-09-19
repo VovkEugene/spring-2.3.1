@@ -61,12 +61,6 @@ public class AppConfig {
     }
 
     @Bean
-    public EntityManagerFactory getEntityManagerFactory(
-            LocalContainerEntityManagerFactoryBean factoryBean) {
-        return factoryBean.getObject();
-    }
-
-    @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);
