@@ -32,23 +32,6 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/update")
-    public String updateUser(@RequestParam("id") Long id,
-                             @RequestParam("username") String username,
-                             @RequestParam("email") String email) {
-        User user = service.getUserById(id);
-        user.setUsername(username);
-        user.setEmail(email);
-        service.updateUser(id, user);
-        return "redirect:/";
-    }
-
-    @GetMapping("/delete")
-    public String deleteUser(@RequestParam("id") Long id) {
-        service.deleteUser(id);
-        return "redirect:/";
-    }
-
     @GetMapping("/create-form")
     public String createUserForm(User user) {
         return "create-form";
@@ -57,6 +40,14 @@ public class UserController {
     @PostMapping("/create-form")
     public String createUser(User user) {
         service.saveUser(user);
+        return "redirect:/";
+    }
+
+    @GetMapping("/update")
+    public String updateUser(@RequestParam("id") Long id,
+                             @RequestParam("username") String username,
+                             @RequestParam("email") String email) {
+        service.updateUser(id, username, email);
         return "redirect:/";
     }
 
@@ -69,7 +60,13 @@ public class UserController {
 
     @PostMapping("/edit-form")
     public String editUser(@RequestParam("id") Long id, User user) {
-        service.updateUser(id, user);
+        service.updateUser(id, user.getUsername(), user.getEmail());
+        return "redirect:/";
+    }
+
+    @GetMapping("/delete")
+    public String deleteUser(@RequestParam("id") Long id) {
+        service.deleteUser(id);
         return "redirect:/";
     }
 }

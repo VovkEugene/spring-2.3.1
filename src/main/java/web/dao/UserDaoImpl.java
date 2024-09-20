@@ -29,12 +29,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(Long id, User user) {
+    public void updateUser(Long id, String username, String email) {
         User userUpdate = entityManager.find(User.class, id);
-        userUpdate.setUsername(user.getUsername());
-        userUpdate.setEmail(user.getEmail());
-        userUpdate.setRole(user.getRole());
-        userUpdate.setCreateDate(user.getCreateDate());
+        userUpdate.setUsername(username);
+        userUpdate.setEmail(email);
+        userUpdate.setRole(userUpdate.getRole());
+        userUpdate.setCreateDate(userUpdate.getCreateDate());
         entityManager.merge(userUpdate);
     }
 
@@ -42,16 +42,5 @@ public class UserDaoImpl implements UserDao {
     public void deleteUser(Long id) {
         User user = entityManager.find(User.class, id);
         entityManager.remove(user);
-    }
-
-    @Override
-    public void updateUser(User user) {
-        User userUpdate = new User();
-        userUpdate.setId(user.getId());
-        userUpdate.setUsername(user.getUsername());
-        userUpdate.setEmail(user.getEmail());
-        userUpdate.setRole(user.getRole());
-        userUpdate.setCreateDate(user.getCreateDate());
-        entityManager.merge(userUpdate);
     }
 }
